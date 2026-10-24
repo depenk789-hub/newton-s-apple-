@@ -1,0 +1,37 @@
+import pygame
+pygame.init()
+#screen = pygame.display.setmode((800, 800))
+import pygame
+
+pygame.init()
+
+screen = pygame.display.set_mode((800, 800))
+pygame.display.set_caption("Newton's Apple")
+clock = pygame.time.Clock()
+
+# creating snake's initial appearance
+SNAKE_HEAD = pygame.Rect(100, 100, 30, 30) # x_position, y_position, height and width resp as parameters
+speed = 2.5
+direction = (1, 0)
+running = True
+while running:
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            running = False
+        elif event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_RIGHT:
+                direction = (1, 0)
+            elif event.key == pygame.K_LEFT:
+                direction = (-1, 0)
+            elif event.key == pygame.K_UP:
+                direction = (0, -1)
+            else:
+                direction = (0, 1)    
+    screen.fill((230, 240, 220))
+    SNAKE_HEAD.x += direction[0] * speed
+    SNAKE_HEAD.y += direction[1] * speed
+    pygame.draw.rect(screen, (0, 0, 0), SNAKE_HEAD)
+    pygame.display.flip()
+    clock.tick(60)
+
+pygame.quit()
