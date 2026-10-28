@@ -30,6 +30,13 @@ while running:
     screen.fill((230, 240, 220))
     SNAKE_HEAD.x += direction[0] * speed
     SNAKE_HEAD.y += direction[1] * speed
+    
+     # detecting whether the snake has hit the walls
+    
+    if SNAKE_HEAD.left <= 0 or SNAKE_HEAD.right >= 800 or SNAKE_HEAD.top <= 0 or SNAKE_HEAD.bottom >= 800:
+        print("The snake hits the wall. Game over!")
+        running = False
+        
     pygame.draw.rect(screen, (0, 0, 0), SNAKE_HEAD)
     pygame.display.flip()
     clock.tick(60)
