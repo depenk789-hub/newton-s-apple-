@@ -10,11 +10,18 @@ pygame.display.set_caption("Newton's Apple")
 clock = pygame.time.Clock()
 
 # creating snake's initial appearance
+
 SNAKE_HEAD = pygame.Rect(100, 100, 30, 30) # x_position, y_position, height and width resp as parameters
+
+# creating apple's initial appearence
+
+APPLE = pygame.Rect(300, 400, 10, 10) # x_position, y_position, height and width resp as parameters
+
 speed = 2.5
 direction = (1, 0)
 running = True
 while running:
+    
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
@@ -37,7 +44,11 @@ while running:
         print("The snake hits the wall. Game over!")
         running = False
         
+    # drawing snake using SNAKE_HEAD with color code 0, 0, 0
     pygame.draw.rect(screen, (0, 0, 0), SNAKE_HEAD)
+    
+    #drawing apple using APPLE with color code 255, 0 , 0
+    pygame.draw.rect(screen, (255, 0 , 0), APPLE)
     pygame.display.flip()
     clock.tick(60)
 
