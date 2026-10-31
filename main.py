@@ -1,7 +1,9 @@
+# importing necessary libraries to the program
 import pygame
 pygame.init()
 #screen = pygame.display.setmode((800, 800))
 import pygame
+import random
 
 pygame.init()
 
@@ -17,7 +19,7 @@ SNAKE_HEAD = pygame.Rect(100, 100, 30, 30) # x_position, y_position, height and 
 
 APPLE = pygame.Rect(300, 400, 10, 10) # x_position, y_position, height and width resp as parameters
 
-speed = 2.5
+speed = 2
 direction = (1, 0)
 running = True
 while running:
@@ -44,6 +46,12 @@ while running:
         print("The snake hits the wall. Game over!")
         running = False
         
+    # Detecting collision between snake and apple
+    if SNAKE_HEAD.colliderect(APPLE):
+        print("Apple is eaten!")
+        APPLE.x = random.randint(10, 780) # random x position with minimum of 10 and maximum of 780 inclusive
+        APPLE.y = random.randint(10, 780) # random y position with minimum of 10 and maximum of 780 inclusive
+            
     # drawing snake using SNAKE_HEAD with color code 0, 0, 0
     pygame.draw.rect(screen, (0, 0, 0), SNAKE_HEAD)
     
